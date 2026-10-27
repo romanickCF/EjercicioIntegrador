@@ -1,0 +1,16 @@
+id;titulo;empresa;estado;fechaPostulacion;enlace;notas
+1;Desarrollador Java Junior;Indra;pendiente;26/10/2026;https://empleo.example.com/indra/1001;Enviado por el portal de empleo
+2;Backend Developer;Accenture;entrevista;20/10/2026;https://empleo.example.com/accenture/2002;Contacto por LinkedIn con la recruiter
+3;Analista Programador;Capgemini;rechazado;12/10/2026;https://empleo.example.com/capgemini/3003;Piden mas de 3 anos de experiencia
+4;Desarrollador Full Stack;NTT Data;aceptado;05/10/2026;https://empleo.example.com/nttdata/4004;Oferta recibida tras la segunda entrevista
+5;Practicas DAM;Telefonica;pendiente;24/10/2026;;Sin enlace, solicitado por email
+6;Ingeniero de Software;BBVA;entrevista;15/10/2026;https://empleo.example.com/bbva/6006;Prueba tecnica pendiente de entregar
+7;Desarrollador Spring Boot;Indra;rechazado;30/09/2026;https://empleo.example.com/indra/7007;Proceso cerrado sin feedback
+8;QA Automation Engineer;Accenture;pendiente;22/10/2026;https://empleo.example.com/accenture/8008;Esperando respuesta
+9;Desarrollador Java Senior;Capgemini;entrevista;08/10/2026;https://empleo.example.com/capgemini/9009;Entrevista tecnica con el equipo de arquitectura
+10;Becario Desarrollo Web;NTT Data;aceptado;18/09/2026;https://empleo.example.com/nttdata/1010;Empiezo en noviembre
+11;Desarrollador Backend Java;Telefonica;rechazado;02/09/2026;https://empleo.example.com/telefonica/1111;Eligieron otro perfil
+12;Analista de Datos Junior;BBVA;aceptado;25/08/2026;https://empleo.example.com/bbva/1212;Incorporacion inmediata
+13;Desarrollador JavaFX;Indra;entrevista;10/08/2026;https://empleo.example.com/indra/1313;Entrevista con RRHH superada
+14;Administrador de Bases de Datos;Capgemini;pendiente;28/07/2026;https://empleo.example.com/capgemini/1414;Sin noticias desde hace semanas
+15;Soporte Tecnico N2;Telefonica;rechazado;06/08/2026;https://empleo.example.com/telefonica/1515;No cumplia el requisito de ingles

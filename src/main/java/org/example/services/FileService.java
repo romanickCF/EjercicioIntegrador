@@ -19,6 +19,22 @@ public class FileService {
     private static final String CABECERA = "id;titulo;empresa;estado;fechaPostulacion;enlace;notas";
     private static final int NUM_CAMPOS = 7;
 
+
+    public Oferta agregar(String titulo, String empresa, String estado, LocalDate fecha) throws IOException {
+        List<Oferta> ofertas = cargar();
+
+        int nuevoId = ofertas.stream()
+                .mapToInt(Oferta::getId)
+                .max()
+                .orElse(0) + 1;
+
+        Oferta nueva = new Oferta(nuevoId, titulo, empresa, estado, fecha, "", "");
+        ofertas.add(nueva);
+        guardar(ofertas);
+        return nueva;
+    }
+
+
     public List<Oferta> filtrar(List<Oferta> ofertas, String estado, String empresa){
 
        return ofertas.stream()

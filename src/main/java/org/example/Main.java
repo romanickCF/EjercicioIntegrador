@@ -37,8 +37,8 @@ public class Main {
                 }
             }
             case "-listar" -> {
-                String estado = obtenerValor(args,"--estado");
-                String empresa = obtenerValor(args,"--empresa");
+                String estado = obtenerValor(args, "--estado");
+                String empresa = obtenerValor(args, "--empresa");
 
                 try {
                     List<Oferta> ofertas = fileService.cargar();
@@ -47,9 +47,9 @@ public class Main {
                         return;
                     }
 
-                    List<Oferta> filtradas = fileService.filtrar(ofertas,estado,empresa);
+                    List<Oferta> filtradas = fileService.filtrar(ofertas, estado, empresa);
 
-                    if (filtradas.isEmpty()){
+                    if (filtradas.isEmpty()) {
                         System.out.println("No hay candidaturas que coincidan con los filtros.");
                         return;
                     }
@@ -72,9 +72,17 @@ public class Main {
                 String estado = obtenerValor(args, "--estado");
                 String fechaTexto = obtenerValor(args, "--fecha");
 
-                boolean noValido = titulo == null || empresa == null || estado == null || fechaTexto == null ;
+                boolean faltaValor = titulo == null || empresa == null || estado == null || fechaTexto == null;
+                boolean valido = estado.equals("pendiente")
+                        || estado.equalsIgnoreCase("entrevista")
+                        || estado.equalsIgnoreCase("rechazado")
+                        || estado.equalsIgnoreCase("aceptado");
 
-                if (noValido) {
+                if (faltaValor) {
+                    System.out.println("Uso: -añadir --titulo X --empresa Y --estado Z --fecha dd/MM/yyyy");
+                    return;
+                }
+                if(!valido){
                     System.out.println("Estado no válido. Usa: pendiente, entrevista, rechazado o aceptado.");
                     return;
                 }
@@ -113,8 +121,8 @@ public class Main {
     }
 
     private static String obtenerValor(String[] args, String clave) {
-        for (int i = 1; i < args.length -1; i++) {
-            if (args[i].equals(clave) && !args[i+1].startsWith("--")) {
+        for (int i = 1; i < args.length - 1; i++) {
+            if (args[i].equals(clave) && !args[i + 1].startsWith("--")) {
                 return args[i + 1];
             }
         }

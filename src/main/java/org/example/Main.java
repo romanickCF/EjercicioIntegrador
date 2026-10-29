@@ -2,6 +2,9 @@ package org.example;
 
 import org.example.services.FileService;
 
+import java.io.IOException;
+import java.nio.file.NoSuchFileException;
+
 public class Main {
     static void main(String[] args) {
 
@@ -14,15 +17,20 @@ public class Main {
 
         switch (comando) {
             case "-importar" -> {
-                if(args.length<2){
+                if (args.length < 2) {
                     System.out.println("Falta el fichero. Uso: -importar <fichero.csv>");
                     return;
                 }
-                String mensaje = fileService.importarCSV(args[1])
-                        ?"Las candidaturas han sido importadas correctamente."
-                        :"Error al importar CSV";
-
-                System.out.println(mensaje);
+                try {
+                    int nuevas = fileService.importarCSV(args[1]);
+                    System.out.println("Importación correcta: " + nuevas + " candidaturas añadidas.");
+                } catch (NoSuchFileException e) {
+                    System.out.println("Archivo no encontrado: " + args[1]);
+                } catch (IOException e) {
+                    System.out.println("Error al leer o escribir el archivo: " + e.getMessage());
+                } catch (IllegalArgumentException e) {
+                    System.out.println("CSV con formato incorrecto. " + e.getMessage());
+                }
             }
             case "-listar" -> {
 

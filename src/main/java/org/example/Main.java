@@ -1,9 +1,11 @@
 package org.example;
 
+import org.example.models.Oferta;
 import org.example.services.FileService;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
+import java.util.List;
 
 public class Main {
     static void main(String[] args) {
@@ -33,6 +35,22 @@ public class Main {
                 }
             }
             case "-listar" -> {
+                try {
+                    List<Oferta> ofertas = fileService.cargar();
+                    if (ofertas.isEmpty()){
+                        System.out.println("No hay candidaturas. Usa -importar para cargar datos.");
+                        return;
+                    }
+
+                    for (Oferta oferta: ofertas){
+                        System.out.println(oferta.toResumen());
+                    }
+                } catch (IOException e) {
+                    System.out.println("Error al leer o escribir el archivo: " + e.getMessage());
+                }
+                catch (IllegalArgumentException e){
+                    System.out.println("Datos con formato incorreto. "+ e.getMessage());
+                }
 
             }
 

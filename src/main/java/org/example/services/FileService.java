@@ -19,6 +19,14 @@ public class FileService {
     private static final String CABECERA = "id;titulo;empresa;estado;fechaPostulacion;enlace;notas";
     private static final int NUM_CAMPOS = 7;
 
+    public List<Oferta> filtrar(List<Oferta> ofertas, String estado, String empresa){
+
+       return ofertas.stream()
+               .filter(oferta -> estado == null || oferta.getEstado().equals(estado))
+               .filter(oferta -> empresa == null || oferta.getEmpresa().equals(empresa))
+               .toList();
+
+    }
 
     public void guardar(List<Oferta> ofertas) throws IOException {
         List<String> lineas = new ArrayList<>();

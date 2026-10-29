@@ -17,6 +17,21 @@ public class FileService {
     private static final String CABECERA = "id;titulo;empresa;estado;fechaPostulacion;enlace;notas";
     private static final int NUM_CAMPOS = 7;
 
+
+    private List<Oferta> leerOfertas(Path ruta) throws IOException {
+        List<String> lineas = Files.readAllLines(ruta);
+        List<Oferta> ofertas = new ArrayList<>();
+
+        for (int i = 1; i < lineas.size(); i++) {
+            String linea = lineas.get(i);
+            if (linea.isBlank()) {
+                continue;
+            }
+            ofertas.add(parsearLinea(linea, i + 1));
+        }
+        return ofertas;
+    }
+
     private Oferta parsearLinea(String linea, int numeroLinea) {
         String[] campos = linea.split(";", -1);
         if (campos.length != NUM_CAMPOS) {

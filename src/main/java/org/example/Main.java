@@ -1,5 +1,6 @@
 package org.example;
 
+import com.sun.jdi.IntegerValue;
 import org.example.models.Oferta;
 import org.example.services.FileService;
 
@@ -8,6 +9,7 @@ import java.nio.file.NoSuchFileException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+import java.util.Optional;
 
 public class Main {
     static void main(String[] args) {
@@ -103,6 +105,40 @@ public class Main {
                 } catch (IllegalArgumentException e) {
                     System.out.println("Datos con formato incorrecto. " + e.getMessage());
                 }
+            }
+
+            case "-ver" -> {
+                if(args.length<2){
+                    System.out.println("Falta ID . Uso: -ver <id>");
+                    return;
+                }
+                try {
+                    int id = Integer.parseInt(args[1]);
+                    Optional<Oferta> oferta = fileService.buscarPorId(id);
+
+                    if(oferta.isPresent()){
+                        System.out.println(oferta.get().toDetalle());
+                    }else{
+                        System.out.println("No existe ninguna candidatura con el ID "+ id);
+                    }
+
+                } catch (NumberFormatException e) {
+                    System.out.println("El ID debe ser un número. Recibido: " + args[1]);
+                } catch (IOException e) {
+                    System.out.println("Error al leer el archivo: " + e.getMessage());
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Datos con formato incorrecto. " + e.getMessage());
+                }
+            }
+
+            case "-borrar" -> {
+                if(args.length<2){
+                    System.out.println("Falta ID. USO -borrar 13");
+                    return;
+                }
+
+                Integer id = Integer.parseInt(args[1]) ;
+
             }
 
             default -> {

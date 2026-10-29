@@ -7,10 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 public class FileService {
@@ -18,6 +15,13 @@ public class FileService {
     private static final Path ARCHIVO_DATOS = Path.of("datos.csv");
     private static final String CABECERA = "id;titulo;empresa;estado;fechaPostulacion;enlace;notas";
     private static final int NUM_CAMPOS = 7;
+
+    public Optional<Oferta> buscarPorId(int id) throws IOException {
+        return cargar().stream()
+                .filter(oferta -> oferta.getId() == id)
+                .findFirst();
+    }
+
 
 
     public Oferta anadir(String titulo, String empresa, String estado, LocalDate fecha) throws IOException {
@@ -115,5 +119,7 @@ public class FileService {
         guardar(existentes);
         return nuevas;
     }
+
+
 
 }

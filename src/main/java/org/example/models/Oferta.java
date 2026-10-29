@@ -7,7 +7,7 @@ public class Oferta {
 
     public static final DateTimeFormatter FORMATO_FECHA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-    private final int id;
+    private final Integer id;
     private final String titulo;
     private final String empresa;
     private final String estado;
@@ -43,6 +43,17 @@ public class Oferta {
     public String toResumen() {
         return String.format("%-4d %-32s %-12s %-11s %s",
                 id, titulo, empresa, estado, fechaPostulacion.format(FORMATO_FECHA));
+    }
+
+    public String toDetalle() {
+        return String.join(System.lineSeparator(),
+                "ID:       " + id,
+                "Título:   " + titulo,
+                "Empresa:  " + empresa,
+                "Estado:   " + estado,
+                "Fecha:    " + fechaPostulacion.format(FORMATO_FECHA),
+                "Enlace:   " + (enlace.isBlank() ? "-" : enlace),
+                "Notas:    " + (notas.isBlank() ? "-" : notas));
     }
 }
 

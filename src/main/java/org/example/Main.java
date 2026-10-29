@@ -10,7 +10,7 @@ import java.util.List;
 public class Main {
     static void main(String[] args) {
 
-        if (args.length == 0){
+        if (args.length == 0) {
             System.out.println("No hay argumentos");
             return;
         }
@@ -35,27 +35,36 @@ public class Main {
                 }
             }
             case "-listar" -> {
+                String estado = obtenerValor(args,"--estado");
+                String empresa = obtenerValor(args,"--empresa");
+
                 try {
                     List<Oferta> ofertas = fileService.cargar();
-                    if (ofertas.isEmpty()){
+                    if (ofertas.isEmpty()) {
                         System.out.println("No hay candidaturas. Usa -importar para cargar datos.");
                         return;
                     }
 
-                    for (Oferta oferta: ofertas){
+                    List<Oferta> filtradas = fileService.filtrar(ofertas,estado,empresa);
+
+                    if (filtradas.isEmpty()){
+                        System.out.println("No hay candidaturas que coincidan con los filtros.");
+                        return;
+                    }
+
+                    for (Oferta oferta : filtradas) {
                         System.out.println(oferta.toResumen());
                     }
                 } catch (IOException e) {
                     System.out.println("Error al leer o escribir el archivo: " + e.getMessage());
-                }
-                catch (IllegalArgumentException e){
-                    System.out.println("Datos con formato incorreto. "+ e.getMessage());
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Datos con formato incorreto. " + e.getMessage());
                 }
 
             }
 
             default -> {
-                System.out.println("Comando no reconocido: "+ comando );
+                System.out.println("Comando no reconocido: " + comando);
                 mostrarAyuda();
             }
 
@@ -74,11 +83,11 @@ public class Main {
     }
 
     private static String obtenerValor(String[] args, String clave) {
-        for (int i = 1; i < args.length; i++) {
-            if (args[i].equals(clave)&& (i+1<args.length)){
-                return args[i+1];
+        for (int i = 1; i < args.length -1; i++) {
+            if (args[i].equals(clave) && !args[i+1].startsWith("--")) {
+                return args[i + 1];
             }
         }
-      return null;
+        return null;
     }
 }

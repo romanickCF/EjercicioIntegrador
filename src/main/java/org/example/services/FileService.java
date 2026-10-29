@@ -20,7 +20,7 @@ public class FileService {
     private static final int NUM_CAMPOS = 7;
 
 
-    public Oferta agregar(String titulo, String empresa, String estado, LocalDate fecha) throws IOException {
+    public Oferta aniadir(String titulo, String empresa, String estado, LocalDate fecha) throws IOException {
         List<Oferta> ofertas = cargar();
 
         int nuevoId = ofertas.stream()

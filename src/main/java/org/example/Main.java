@@ -5,6 +5,8 @@ import org.example.services.FileService;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class Main {
@@ -61,6 +63,34 @@ public class Main {
                     System.out.println("Datos con formato incorreto. " + e.getMessage());
                 }
 
+            }
+
+            case "-añadir" -> {
+
+                String titulo = obtenerValor(args, "--titulo");
+                String empresa = obtenerValor(args, "--empresa");
+                String estado = obtenerValor(args, "--estado");
+                String fechaTexto = obtenerValor(args, "--fecha");
+
+                boolean noValido = titulo == null || empresa == null || estado == null || fechaTexto == null ;
+
+                if (noValido) {
+                    System.out.println("Estado no válido. Usa: pendiente, entrevista, rechazado o aceptado.");
+                    return;
+                }
+
+                try {
+                    LocalDate fecha = LocalDate.parse(fechaTexto, Oferta.FORMATO_FECHA);
+                    Oferta nueva = fileService.aniadir(titulo, empresa, estado.toLowerCase(), fecha);
+                    System.out.println("Candidatura añadida con ID " + nueva.getId());
+
+                } catch (DateTimeParseException e) {
+                    System.out.println("Fecha no válida. Usa el formato dd/MM/yyyy.");
+                } catch (IOException e) {
+                    System.out.println("Error al leer o escribir el archivo: " + e.getMessage());
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Datos con formato incorrecto. " + e.getMessage());
+                }
             }
 
             default -> {

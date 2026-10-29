@@ -39,5 +39,10 @@ public class Oferta {
                 String.valueOf(id), titulo, empresa, estado,
                 fechaPostulacion.format(FORMATO_FECHA), enlace, notas);
     }
+
+    public String toResumen() {
+        return String.format("%-4d %-32s %-12s %-11s %s",
+                id, titulo, empresa, estado, fechaPostulacion.format(FORMATO_FECHA));
+    }
 }
 

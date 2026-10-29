@@ -1,6 +1,5 @@
 package org.example.services;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,7 +9,7 @@ public class FileService {
 
 
     public boolean importarCSV (String nombreFichero){
-        String rutaCompleta = "src/main/resources/" + nombreFichero;
+        String rutaCompleta = "C:\\Users\\romanickraga\\IdeaProjects\\EjercicioIntegrador\\src\\main\\resources\\" + nombreFichero;
         try {
             List<String> lineas = Files.readAllLines(Path.of(rutaCompleta));
             for (String linea : lineas){
@@ -19,7 +18,7 @@ public class FileService {
             return true;
 
         } catch (IOException e) {
-           System.err.println("Error al leer el fichero" + e.getMessage());
+           System.err.println("Error al leer el fichero " + e.getMessage());
             return false;
         }
 

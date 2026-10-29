@@ -62,6 +62,7 @@ public class Main {
         }
     }
 
+    //Metodos Auxiliares
 
     private static void mostrarAyuda() {
         System.out.println("Comandos disponibles:");
@@ -70,5 +71,14 @@ public class Main {
         System.out.println("  -ver <id>");
         System.out.println("  -borrar <id>");
         System.out.println("  -importar <fichero.csv>");
+    }
+
+    private static String obtenerValor(String[] args, String clave) {
+        for (int i = 1; i < args.length; i++) {
+            if (args[i].equals(clave)&& (i+1<args.length)){
+                return args[i+1];
+            }
+        }
+      return null;
     }
 }

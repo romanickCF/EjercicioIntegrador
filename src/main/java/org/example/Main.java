@@ -73,15 +73,19 @@ public class Main {
                 String fechaTexto = obtenerValor(args, "--fecha");
 
                 boolean faltaValor = titulo == null || empresa == null || estado == null || fechaTexto == null;
-                boolean valido = estado.equals("pendiente")
-                        || estado.equalsIgnoreCase("entrevista")
-                        || estado.equalsIgnoreCase("rechazado")
-                        || estado.equalsIgnoreCase("aceptado");
+
+
+                boolean valido = "pendiente".equalsIgnoreCase(estado)
+                        || "entrevista".equalsIgnoreCase(estado)
+                        || "rechazado".equalsIgnoreCase(estado)
+                        || "aceptado".equalsIgnoreCase(estado);
+
 
                 if (faltaValor) {
                     System.out.println("Uso: -añadir --titulo X --empresa Y --estado Z --fecha dd/MM/yyyy");
                     return;
                 }
+
                 if(!valido){
                     System.out.println("Estado no válido. Usa: pendiente, entrevista, rechazado o aceptado.");
                     return;
@@ -89,7 +93,7 @@ public class Main {
 
                 try {
                     LocalDate fecha = LocalDate.parse(fechaTexto, Oferta.FORMATO_FECHA);
-                    Oferta nueva = fileService.aniadir(titulo, empresa, estado.toLowerCase(), fecha);
+                    Oferta nueva = fileService.anadir(titulo, empresa, estado.toLowerCase(), fecha);
                     System.out.println("Candidatura añadida con ID " + nueva.getId());
 
                 } catch (DateTimeParseException e) {

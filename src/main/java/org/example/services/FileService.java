@@ -17,6 +17,12 @@ public class FileService {
     private static final String CABECERA = "id;titulo;empresa;estado;fechaPostulacion;enlace;notas";
     private static final int NUM_CAMPOS = 7;
 
+    public List<Oferta> cargar() throws IOException {
+        if (Files.notExists(ARCHIVO_DATOS)) {
+            return new ArrayList<>();
+        }
+        return leerOfertas(ARCHIVO_DATOS);
+    }
 
     private List<Oferta> leerOfertas(Path ruta) throws IOException {
         List<String> lineas = Files.readAllLines(ruta);

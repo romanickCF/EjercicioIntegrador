@@ -1,6 +1,5 @@
 package org.example;
 
-import com.sun.jdi.IntegerValue;
 import org.example.models.Oferta;
 import org.example.services.FileService;
 
@@ -12,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Main {
+
     static void main(String[] args) {
 
         if (args.length == 0) {
@@ -88,7 +88,7 @@ public class Main {
                     return;
                 }
 
-                if(!valido){
+                if (!valido) {
                     System.out.println("Estado no válido. Usa: pendiente, entrevista, rechazado o aceptado.");
                     return;
                 }
@@ -108,7 +108,7 @@ public class Main {
             }
 
             case "-ver" -> {
-                if(args.length<2){
+                if (args.length < 2) {
                     System.out.println("Falta ID . Uso: -ver <id>");
                     return;
                 }
@@ -116,10 +116,10 @@ public class Main {
                     int id = Integer.parseInt(args[1]);
                     Optional<Oferta> oferta = fileService.buscarPorId(id);
 
-                    if(oferta.isPresent()){
+                    if (oferta.isPresent()) {
                         System.out.println(oferta.get().toDetalle());
-                    }else{
-                        System.out.println("No existe ninguna candidatura con el ID "+ id);
+                    } else {
+                        System.out.println("No existe ninguna candidatura con el ID " + id);
                     }
 
                 } catch (NumberFormatException e) {
@@ -132,22 +132,21 @@ public class Main {
             }
 
             case "-borrar" -> {
-                if(args.length<2){
+                if (args.length < 2) {
                     System.out.println("Falta ID. USO -borrar 13");
                     return;
                 }
 
 
-
                 try {
-                    int id = Integer.parseInt(args[1]) ;
+                    int id = Integer.parseInt(args[1]);
 
-                 if(fileService.borrar(id)){
+                    if (fileService.borrar(id)) {
 
-                     System.out.println("Oferta "+ id + " eliminada.");
-                 }else{
-                     System.out.println("No existe nunguna candidatura con Id "+ id);
-                 }
+                        System.out.println("Oferta " + id + " eliminada.");
+                    } else {
+                        System.out.println("No existe nunguna candidatura con Id " + id);
+                    }
                 } catch (NumberFormatException e) {
                     System.out.println("El ID debe ser un número. Recibido: " + args[1]);
                 } catch (IOException e) {
@@ -185,4 +184,5 @@ public class Main {
         }
         return null;
     }
+
 }

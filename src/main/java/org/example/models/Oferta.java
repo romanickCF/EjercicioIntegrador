@@ -26,13 +26,33 @@ public class Oferta {
         this.notas = notas;
     }
 
-    public int getId() { return id; }
-    public String getTitulo() { return titulo; }
-    public String getEmpresa() { return empresa; }
-    public String getEstado() { return estado; }
-    public LocalDate getFechaPostulacion() { return fechaPostulacion; }
-    public String getEnlace() { return enlace; }
-    public String getNotas() { return notas; }
+    public int getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getEmpresa() {
+        return empresa;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public LocalDate getFechaPostulacion() {
+        return fechaPostulacion;
+    }
+
+    public String getEnlace() {
+        return enlace;
+    }
+
+    public String getNotas() {
+        return notas;
+    }
 
     public String toLineaCsv() {
         return String.join(";",

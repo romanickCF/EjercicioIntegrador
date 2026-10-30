@@ -22,7 +22,14 @@ public class FileService {
                 .findFirst();
     }
 
-
+    public boolean borrar(int id) throws IOException {
+        List<Oferta> ofertas = cargar();
+        boolean eliminada = ofertas.removeIf(oferta -> oferta.getId() == id);
+        if (eliminada) {
+            guardar(ofertas);
+        }
+        return eliminada;
+    }
 
     public Oferta anadir(String titulo, String empresa, String estado, LocalDate fecha) throws IOException {
         List<Oferta> ofertas = cargar();

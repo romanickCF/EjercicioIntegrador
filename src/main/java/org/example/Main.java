@@ -137,7 +137,24 @@ public class Main {
                     return;
                 }
 
-                Integer id = Integer.parseInt(args[1]) ;
+
+
+                try {
+                    int id = Integer.parseInt(args[1]) ;
+
+                 if(fileService.borrar(id)){
+
+                     System.out.println("Oferta "+ id + " eliminada.");
+                 }else{
+                     System.out.println("No existe nunguna candidatura con Id "+ id);
+                 }
+                } catch (NumberFormatException e) {
+                    System.out.println("El ID debe ser un número. Recibido: " + args[1]);
+                } catch (IOException e) {
+                    System.out.println("Error al leer o escribir el archivo: " + e.getMessage());
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Datos con formato incorrecto. " + e.getMessage());
+                }
 
             }
 

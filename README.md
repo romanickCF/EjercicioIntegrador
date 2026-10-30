@@ -168,4 +168,4 @@ https://drive.google.com/file/d/1DjLe-TaB6591QVQEdA1E8l-AOrQQqXSL/view?usp=shari
 
 - **Datos de prueba:** el CSV `candidaturas.csv` se generó con una herramienta de IA a partir del prompt de la plantilla del enunciado.
 - **Desarrollo del código Java (@romanickCF):** se ha utilizado un asistente de IA conversacional (Claude, de Anthropic) en un chat, como apoyo para entender los conceptos (argumentos de `main`, lectura de CSV, flujo cargar → modificar → guardar) y para revisar el código. No se han utilizado agentes de código ni herramientas que modifiquen el repositorio de forma automática.
-- **Diseño en Figma y manual de estilo (@Diego-Code-Killah):**Se ha utilizado asistende de IA Claude para generar el manual de estilo a raiz del prototipo Figma<>.
+- **Diseño en Figma y manual de estilo (@Diego-Code-Killah):**Se ha utilizado asistende de IA Claude para generar el manual de estilo a raiz del prototipo Figma.
